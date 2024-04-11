@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Já_Leu?</title>
+    <meta name="description" content="Author: Gabriel Guerra">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="assets/2.png" type="image/x-icon">
+    <script src="script.js"></script>
+</head>
+<body>
+    
+    <div class="app-bar">
+        <div class="app-logo">
+            <img src="./assets/2.png" alt="logo do app">
+        </div>
+        <div class="app-name">
+            <h4>Já_Leu?</h4>
+        </div>
+    </div>
+
+    <div class="pesquisa-livro">
+
+        <input type="text" id="livro" placeholder="Digite o nome do livro" onkeypress="procurarLivro()">
+
+        <button onclick="procurarLivro()" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>   
+        </button>
+        
+
+    </div>
+
+    <div id="livro-container">
+      <div class="card">
+
+       <img src="assets/download.jpg" onclick="mostrarDetalhe()" alt="" class="imagem">
+        <a href="" class="butao" onclick="mostrarDetalhe()"><h3 class="titulo">React JS</h3></a>
+      </div>
+    </div>
+
+
+    <!-- <div class="overlay">
+      <div class="overlay-inner">
+        <button class="close"><i><img src="assets/icon-close.svg" alt=""></i></button>
+        <div class="inner-box">
+          <img src="assets/download.jpg" alt="">
+          <div class="info">
+            <h1>czxczxczxc</h1>
+            <h3>zxczxczczxcxz </h3>
+            <h4>sdffsfsdfd <span>20/08/2003</span></h4><br>
+            <a href=""><button>Saiba Mais</button></a>
+            <a href=""><button class="favoritar-btn">Favoritar</button></a>
+            <a href=""><button class="esquece-btn">Esquecer</button></a>
+          </div>
+        </div><br>
+        <h4 class="descricao">kjksdjnkdnksdnkvjnjsdnksdjnkj</h4>
+      </div>
+    </div> -->
+
+    <footer>
+        <div class="creditos">
+            Desenvolvido por <a href="https://github.com/guerrastech/">Gabriel Guerra</a>
+        </div>
+    </footer>
+
+
+
+    
+  <!-- <script>
+    let newWorker;
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').then(reg => {
+        reg.addEventListener('updatefound', () => {
+          newWorker = reg.installing;
+        });
+      });
+      let refreshing;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+      });
+    }
+  </script> -->
+
+</body>
+</html>
