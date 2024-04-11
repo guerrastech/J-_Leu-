@@ -42,25 +42,7 @@
       </div>
     </div>
 
-
-    <!-- <div class="overlay">
-      <div class="overlay-inner">
-        <button class="close"><i><img src="assets/icon-close.svg" alt=""></i></button>
-        <div class="inner-box">
-          <img src="assets/download.jpg" alt="">
-          <div class="info">
-            <h1>czxczxczxc</h1>
-            <h3>zxczxczczxcxz </h3>
-            <h4>sdffsfsdfd <span>20/08/2003</span></h4><br>
-            <a href=""><button>Saiba Mais</button></a>
-            <a href=""><button class="favoritar-btn">Favoritar</button></a>
-            <a href=""><button class="esquece-btn">Esquecer</button></a>
-          </div>
-        </div><br>
-        <h4 class="descricao">kjksdjnkdnksdnkvjnjsdnksdjnkj</h4>
-      </div>
-    </div> -->
-
+    
     <footer>
         <div class="creditos">
             Desenvolvido por <a href="https://github.com/guerrastech/">Gabriel Guerra</a>
@@ -70,22 +52,12 @@
 
 
     
-  <!-- <script>
-    let newWorker;
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').then(reg => {
-        reg.addEventListener('updatefound', () => {
-          newWorker = reg.installing;
-        });
-      });
-      let refreshing;
-      navigator.serviceWorker.addEventListener('controllerchange', function () {
-        if (refreshing) return;
-        window.location.reload();
-        refreshing = true;
-      });
-    }
-  </script> -->
+    <script>
+      if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+    </script>
+  
 
 </body>
 </html>

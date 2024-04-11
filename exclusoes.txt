@@ -1,0 +1,54 @@
+ <!-- <div class="overlay">
+      <div class="overlay-inner">
+        <button class="close"><i><img src="assets/icon-close.svg" alt=""></i></button>
+        <div class="inner-box">
+          <img src="assets/download.jpg" alt="">
+          <div class="info">
+            <h1>czxczxczxc</h1>
+            <h3>zxczxczczxcxz </h3>
+            <h4>sdffsfsdfd <span>20/08/2003</span></h4><br>
+            <a href=""><button>Saiba Mais</button></a>
+            <a href=""><button class="favoritar-btn">Favoritar</button></a>
+            <a href=""><button class="esquece-btn">Esquecer</button></a>
+          </div>
+        </div><br>
+        <h4 class="descricao">kjksdjnkdnksdnkvjnjsdnksdjnkj</h4>
+      </div>
+    </div> -->
+
+
+
+
+
+    
+    // const favoritar = document.createElement("button");
+    // favoritar.className = "favoritar-btn";
+    // favoritar.innerText = "Favoritar";
+    // info.appendChild(favoritar);
+
+    // const esquecer = document.createElement("button");
+    // esquecer.className = "esquece-btn";
+    // esquecer.innerText = "Esquecer";
+    // info.appendChild(esquecer);
+
+
+
+
+    
+    // saibaMais.appendChild(link);
+
+
+
+    // self.addEventListener('fetch', event => {
+//   event.respondWith(async () => {
+//       const cache = await caches.open(CACHE_NAME);
+
+//       const cachedResponse = await cache.match(event.request);
+
+//       if (cachedResponse !== undefined) {
+//           return cachedResponse;
+//       } else {
+//           return fetch(event.request)
+//       };
+//   });
+// });

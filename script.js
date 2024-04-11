@@ -28,7 +28,6 @@ function criarElementoLivro(livro) {
 
 
     const link = document.createElement("a");
-    // link.href = livro.volumeInfo.previewLink ? livro.volumeInfo.previewLink : '#'; // Link de visualização do livro
     link.className = "butao";
     link.onclick = function(){
         mostrarDetalhe(livro);
@@ -66,6 +65,8 @@ async function procurarLivro() {
         alert(error.message);
     }
 }
+
+
 
 function mostrarDetalhe(livro) {
     const overlay = document.createElement("div");
@@ -117,7 +118,6 @@ function mostrarDetalhe(livro) {
 
     const saibaMais = document.createElement("button");
     saibaMais.innerText = "Saiba Mais";
-    // saibaMais.appendChild(link);
 
     const link = document.createElement("a");
     link.href = livro.volumeInfo.previewLink ? livro.volumeInfo.previewLink : '#';
@@ -125,15 +125,6 @@ function mostrarDetalhe(livro) {
     info.appendChild(link);
     
 
-    // const favoritar = document.createElement("button");
-    // favoritar.className = "favoritar-btn";
-    // favoritar.innerText = "Favoritar";
-    // info.appendChild(favoritar);
-
-    // const esquecer = document.createElement("button");
-    // esquecer.className = "esquece-btn";
-    // esquecer.innerText = "Esquecer";
-    // info.appendChild(esquecer);
 
     innerBox.appendChild(info);
     overlayInner.appendChild(innerBox);

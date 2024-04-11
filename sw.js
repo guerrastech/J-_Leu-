@@ -1,47 +1,85 @@
-// This is the "Offline page" service worker
+const CACHE_NAME = 'cache';
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+const PRECACHE_ASSETS = [
+         './index.html',
+         './style.css',
+          './android/android-launchericon-512-512.png',
+          './android/android-launchericon-192-192.png',
+          './android/android-launchericon-144-144.png',
+          './android/android-launchericon-96-96.png',
+          './android/android-launchericon-72-72.png',
+          './android/android-launchericon-48-48.png',
+          './ios/16.png',
+          './ios/20.png',
+          './ios/29.png',
+          './ios/32.png',
+          './ios/40.png',
+          './ios/50.png',
+          './ios/57.png',
+          './ios/58.png',
+          './ios/60.png',
+          './ios/64.png',
+          './ios/72.png',
+          './ios/76.png',
+          './ios/80.png',
+          './ios/87.png',
+          './ios/100.png',
+          './ios/114.png',
+          './ios/120.png',
+          './ios/128.png',
+          './ios/144.png',
+          './ios/152.png',
+          './ios/167.png',
+          './ios/180.png',
+          './ios/192.png',
+          './ios/256.png',
+          './ios/512.png',
+         './ios/1024.png',
+]
 
-const CACHE = "pwabuilder-page";
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "ToDo-replace-this-name.html";
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
+self.addEventListener('install', event => {
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE_NAME);
+        cache.addAll(PRECACHE_ASSETS);
+    })());
 });
 
-self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
+
+
+
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request).then(response => {
+        // Verifica se a resposta é válida
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+          return response;
+        }
+
+        // Clona a resposta para armazenamento em cache
+        const responseToCache = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseToCache);
+        });
+
+        return response;
+      });
+    })
   );
 });
 
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
 
-        if (preloadResp) {
-          return preloadResp;
-        }
 
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
 
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      }
-    })());
-  }
-});
