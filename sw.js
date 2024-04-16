@@ -61,6 +61,11 @@ self.addEventListener('fetch', event => {
         return cachedResponse;
       }
 
+      // Verifica se a solicitação pertence à extensão do Chrome
+      if (event.request.url.startsWith('chrome-extension://')) {
+        return fetch(event.request);
+      }
+
       return fetch(event.request).then(response => {
         // Verifica se a resposta é válida
         if (!response || response.status !== 200 || response.type !== 'basic') {
@@ -78,6 +83,7 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
 
 
 
