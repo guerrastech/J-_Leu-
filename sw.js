@@ -38,22 +38,6 @@ const PRECACHE_ASSETS = [
 ]
 
 
-self.addEventListener('install', event => {
-    event.waitUntil((async () => {
-        const cache = await caches.open(CACHE_NAME);
-        cache.addAll(PRECACHE_ASSETS);
-    })());
-});
-
-
-
-
-self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
-});
-
-
-
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
@@ -75,7 +59,10 @@ self.addEventListener('fetch', event => {
         // Clona a resposta para armazenamento em cache
         const responseToCache = response.clone();
         caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
+          // Verifica se a solicitação não pertence à extensão do Chrome antes de armazená-la em cache
+          if (!event.request.url.startsWith('chrome-extension://')) {
+            cache.put(event.request, responseToCache);
+          }
         });
 
         return response;
@@ -83,6 +70,7 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
 
 
 
